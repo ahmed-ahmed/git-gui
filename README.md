@@ -1,4 +1,6 @@
-# git 
+# git gui
+
+A graphical user interface to manage git repos
 
 ```
 npm start 

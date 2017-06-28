@@ -11,13 +11,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@uirouter/angularjs": "latest",
     "angular": "^1.6.3",
-    "angular-ui-router": "latest",
-    "angularjs-scroll-glue": "^2.2.0",
-    "body-parser": "^1.17.1",
+    "angular-markdown-directive": "^0.3.1",
+    "angular-sanitize": "^1.6.4",
+    "body-parser": "^1.17.2",
     "child_process": "^1.0.2",
-    "express": "^4.15.2",
-    "q": "^1.5.0"
+    "express": "^4.15.3",
+    "q": "^1.5.0",
+    "showdown": "^1.7.1"
   },
   "devDependencies": {
     "babel-core": "^6.24.0",

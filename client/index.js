@@ -1,7 +1,7 @@
 import angular from 'angular';
-import 'angular-ui-router';
-
-var app = angular.module('app', ['ui.router'])
+import '@uirouter/angularjs';
+import Showdown from 'showdown';
+var app = angular.module('app', ['ui.router', 'btford.markdown'])
 
 
 ///////services 

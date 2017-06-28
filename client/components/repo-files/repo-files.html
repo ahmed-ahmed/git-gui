@@ -1,0 +1,8 @@
+<table class="table table-hover">
+    <tr ng-repeat="file in $ctrl.files track by file.name">
+        <td>{{file.name}}</td>
+        <td>{{file.commitMessage}}</td>
+        <td>{{file.lastModifiedDate}}</td>
+        <td>{{file.changedBy}}</td>
+    </tr>
+</table>

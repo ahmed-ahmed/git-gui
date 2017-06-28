@@ -9,6 +9,10 @@ class ReposService {
     getRepos() {
         return this.$http.get('/api/repos');
     }
+    
+    getFiles(repoName) {
+        return this.$http.get(`/api/repos/${repoName}/files`);
+    }
 
 //     stopContainer(containerId) {
 //     	return this.$http.put('/api/containers', {

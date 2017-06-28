@@ -8,6 +8,7 @@ var spawn = p.spawn;
 
 var fs = require('fs');
 var reposPath = `/home/ubuntu/.gitviewer/.repos`
+var blamePath = `/home/ubuntu/workspace/bash/better-blame.sh`
 
 exports.getRepos = () => {
     var deferred = $q.defer();
@@ -25,14 +26,22 @@ exports.getRepos = () => {
 
 exports.getFiles = (repoPath) => {
     var deferred = $q.defer();
-    fs.readdir(repoPath, function(err, data) {
-        // if (err) throw err;
-        // let repos = [];
-        // data.toString().split("\n").forEach((line)=> {
-        //     var item = line.split('\t');
-        //     repos.push(new Repo(item[0], item[1]));
-        // })
-         deferred.resolve(data);
+    var cmd = blamePath;
+    console.log(cmd)
+
+    exec(cmd, {cwd: repoPath}, (err, data, derr) => {
+        
+        console.log(err);
+        console.log(data);
+        console.log(derr);
+        
+        let files = [];
+        let items = data.split('\n');
+        
+        items.forEach(row=>{
+            files.push(new File(...row.split('|')));
+        })
+        deferred.resolve(files);
     });
     return deferred.promise;
 }
@@ -46,8 +55,17 @@ class Repo{
 }
 
 class File{
-    constructor(name,path) {
+    constructor(name,lastModifiedDate, changedBy, commitMessage) {
+        console.log(lastModifiedDate);
         this.name = name;
-        this.path = path;
+        // this.path = path;
+        this.lastModifiedDate = lastModifiedDate;
+        this.changedBy = changedBy;
+        this.commitMessage = commitMessage;
     }
 }
+
+// function x(a,b)
+// { console.log(a + b) }
+
+// x(...[1,2])

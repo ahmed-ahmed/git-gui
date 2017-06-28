@@ -15,10 +15,10 @@ app.use(bodyParser.json());
 
 
 
-// var imagesController = require('./src/routes/images.js');
+var reposController = require('./src/routes/repos.js');
 // var containersController = require('./src/routes/containers.js');
 
-// app.use('/api/images', imagesController);
+app.use('/api/repos', reposController);
 // app.use('/api/containers', containersController);
 app.use(express.static('client'));
 

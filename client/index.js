@@ -1,20 +1,28 @@
 import angular from 'angular';
 import 'angular-ui-router';
-import 'angularjs-scroll-glue';
-import imageComponent from './components/images/images.js';
-import imagesService from './components/images/imagesService.js';
+// import 'angularjs-scroll-glue';
+var app = angular.module('app', ['ui.router'])
 
-import containersComponent from './components/containers/containers.js';
-import containerComponent from './components/container/container.js';
-import containersService from './components/containers/containersService.js';
 
-var app = angular.module('app', ['ui.router', 'luegg.directives'])
-app.service('imagesService', imagesService);
-app.service('containersService', containersService);
+///////services 
+import reposService from './components/repos-list/repos-list-service.js';
+// import imageComponent from './components/images/images.js';
+// import imagesService from './components/images/imagesService.js';
 
-app.component('dImages', imageComponent);
-app.component('dContainers', containersComponent);
-app.component('dContainer', containerComponent);
+import reposListComponent from './components/repos-list/repos-list.js';
+
+// import containersComponent from './components/containers/containers.js';
+// import containerComponent from './components/container/container.js';
+// import containersService from './components/containers/containersService.js';
+
+
+app.service('reposService', reposService);
+// app.service('containersService', containersService);
+
+// app.component('dImages', imageComponent);
+// app.component('dContainers', containersComponent);
+// app.component('dContainer', containerComponent);
+app.component('reposList', reposListComponent);
 app.config(function($locationProvider, $compileProvider, $httpProvider, $stateProvider) {
     $locationProvider.html5Mode(true);
 
@@ -23,22 +31,7 @@ app.config(function($locationProvider, $compileProvider, $httpProvider, $statePr
     $httpProvider.defaults.cache = false;
 
     $stateProvider
-        .state('images', {
-            url: '/images',
-            onEnter: function() {
-            },
-            views: {
-                'header': {
-                    template: 'header'
-                },
-                'content': {
-                    component: 'dImages'
-                }
-
-
-            }
-        })
-        .state('containers', {
+        .state('home', {
             url: '/',
             onEnter: function() {
             },
@@ -47,14 +40,14 @@ app.config(function($locationProvider, $compileProvider, $httpProvider, $statePr
                     template: 'header'
                 },
                 'content': {
-                    component: 'dContainers'
+                    component: 'reposList'
                 }
 
 
             }
         })
-        .state('container', {
-            url: '/containers/:id',
+        .state('repo', {
+            url: '/repo/:name',
             onEnter: function() {
             },
             views: {

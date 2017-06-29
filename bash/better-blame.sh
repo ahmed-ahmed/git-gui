@@ -13,5 +13,5 @@ do
     filesize=$(cut -d'|' -f2 <<< $i)
     
     str=$(git log -1 --format="%cr|%cn|%s" $fileName)
-    printf "%-${MAXLEN}s|%s|%s\n" "$fileName" "$filesize" "$str"
+    printf "%-${MAXLEN}s|%s|%s\n" "$fileName" "$str" "$filesize" 
 done

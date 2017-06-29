@@ -61,6 +61,27 @@ app.config(function($locationProvider, $compileProvider, $httpProvider, $statePr
                 }
             }
         })
+        .state('folder', {
+            url: '/repo/:name/tree/master/:folder',
+            onEnter: function() {
+            },
+            views: {
+                'header': {
+                    template: 'header'
+                },
+                'content': {
+                    component: 'repoFiles'
+                }
+            },
+            resolve: {
+                repoName: ($stateParams)=> {
+                    return $stateParams.name;
+                },
+                id: function($stateParams) {
+                    return $stateParams.id
+                }
+            }
+        })
         .state('xxx', {
             url: '/xxx',
             template: 'nononono'

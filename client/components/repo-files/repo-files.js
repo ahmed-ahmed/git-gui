@@ -22,6 +22,7 @@ let component = {
     bindings: {
         // userName: '@',
         repoName: '<'
+        // path: '<'
     },
     template,
     controller: ReposListController

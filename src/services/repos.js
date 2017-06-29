@@ -78,5 +78,6 @@ class File{
         this.lastModifiedDate = lastModifiedDate;
         this.changedBy = changedBy;
         this.commitMessage = commitMessage;
+        this.size = size;
     }
 }

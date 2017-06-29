@@ -6,7 +6,11 @@
     </div>
     <table class="table table-hover">
         <tr ng-repeat="file in $ctrl.files track by file.name">
-            <td>{{file.name}}</td>
+            <td>
+                <i class="glyphicon glyphicon-file" ng-if="file.size!=='-'"></i>
+                <i class="glyphicon glyphicon-folder-open" ng-if="file.size==='-'"></i>
+                {{file.name}}
+            </td>
             <td>{{file.commitMessage}}</td>
             <td>{{file.lastModifiedDate}}</td>
             <td>{{file.changedBy}}</td>

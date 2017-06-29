@@ -1,4 +1,4 @@
 {
     "verbose": true,
-    "ignore": ["*.spec.js", "README"]
+    "ignore": ["*.spec.js", "README", "AC", "bash", "client"]
 }

@@ -1,9 +1,9 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 import Showdown from 'showdown';
-var app = angular.module('app', ['ui.router', 'btford.markdown'])
+var app = angular.module('app', ['ui.router', 'hc.marked'])
 
-
+window.Showdown  = Showdown ;
 ///////services 
 import reposService from './components/repos-list/repos-list-service.js';
 app.service('reposService', reposService);

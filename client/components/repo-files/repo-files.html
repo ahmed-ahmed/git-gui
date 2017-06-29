@@ -1,14 +1,29 @@
-<table class="table table-hover">
-    <tr ng-repeat="file in $ctrl.files track by file.name">
-        <td>{{file.name}}</td>
-        <td>{{file.commitMessage}}</td>
-        <td>{{file.lastModifiedDate}}</td>
-        <td>{{file.changedBy}}</td>
-    </tr>
-</table>
+<div class="repos-list panel panel-default">
+    <div class="panel-heading clearfix">
+        <h4 class="panel-title pull-left">
+            Files
+        </h4>
+    </div>
+    <table class="table table-hover">
+        <tr ng-repeat="file in $ctrl.files track by file.name">
+            <td>{{file.name}}</td>
+            <td>{{file.commitMessage}}</td>
+            <td>{{file.lastModifiedDate}}</td>
+            <td>{{file.changedBy}}</td>
+        </tr>
+    </table>
+</div>
 
 
-<btf-markdown>
-  #Markdown directive
-  *It works!*
-</btf-markdown>
+<div class="repos-list panel panel-default">
+    <div class="panel-heading clearfix">
+        <h4 class="panel-title pull-left">
+             README.md
+        </h4>
+    </div>
+    <div class="panel-body">
+        <div marked="$ctrl.readme">
+
+        </div>
+    </div>
+</div>

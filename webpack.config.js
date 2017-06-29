@@ -4,7 +4,7 @@ module.exports = {
     context: `${__dirname}/client`,
     entry: {
         index: `./index.js`,
-        vendor: [`angular`, `angular-markdown-directive`, `showdown`, `angular-sanitize`]
+        vendor: [`angular`, `angular-marked`]
     },
     devtool: "#inline-source-map",
     output: {

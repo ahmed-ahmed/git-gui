@@ -2,6 +2,7 @@
 
 import angular from 'angular';
 
+
 class ReposService {
     constructor($http) {
         this.$http = $http;
@@ -12,6 +13,10 @@ class ReposService {
     
     getFiles(repoName) {
         return this.$http.get(`/api/repos/${repoName}/files`);
+    }
+    
+    getReadMe(repoName) {
+        return this.$http.get(`/api/repos/${repoName}/readme`);
     }
 
 //     stopContainer(containerId) {

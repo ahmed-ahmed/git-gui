@@ -10,6 +10,10 @@ class ReposListController{
             this.files = res.data;
             console.log(this.files);
         });
+        
+        reposService.getReadMe(this.repoName).then((res)=>{
+            this.readme = res.data
+        });
     }
 }
 

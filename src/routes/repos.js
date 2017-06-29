@@ -29,6 +29,15 @@ controller.get('/:repo/files', (req, res) => {
     });
 });
 
+controller.get('/:repo/readme', (req, res) => {
+    var path = repos[req.params.repo].path;
+    
+    
+    service.getReadme(path).then(data => {
+        res.json(data);
+    });
+});
+
 
 
 module.exports = controller;

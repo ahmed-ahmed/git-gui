@@ -24,6 +24,22 @@ exports.getRepos = () => {
     return deferred.promise;
 }
 
+// check if file exists
+exports.getReadme = (path) => {
+    var deferred = $q.defer();
+    fs.readFile(path + `/README.md`, function(err, data) {
+        if (err) throw err;
+        // let repos = [];
+        // data.toString().split("\n").forEach((line)=> {
+        //     var item = line.split('\t');
+        //     repos.push(new Repo(item[0], item[1]));
+        // })
+        deferred.resolve(data.toString());
+    });
+    return deferred.promise;
+}
+
+
 exports.getFiles = (repoPath) => {
     var deferred = $q.defer();
     var cmd = blamePath;

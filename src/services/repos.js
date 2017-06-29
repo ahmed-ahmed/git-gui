@@ -71,7 +71,7 @@ class Repo{
 }
 
 class File{
-    constructor(name,lastModifiedDate, changedBy, commitMessage) {
+    constructor(name,lastModifiedDate, changedBy, commitMessage, size) {
         console.log(lastModifiedDate);
         this.name = name;
         // this.path = path;
@@ -80,8 +80,3 @@ class File{
         this.commitMessage = commitMessage;
     }
 }
-
-// function x(a,b)
-// { console.log(a + b) }
-
-// x(...[1,2])

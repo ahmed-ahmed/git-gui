@@ -10,11 +10,13 @@ import './components/repos-list/repos-list-service.js';
 import './components/repos-page/repos-page.js';
 import './components/repos-list/repos-list.js';
 import './components/repo-files/repo-files.js';
+import './components/file-page/file-page.js';
+import './components/code/code.js';
 
 
 
 
-app.config(function($locationProvider, $compileProvider, $httpProvider, $stateProvider) {
+app.config(function($locationProvider, $compileProvider, $httpProvider, $stateProvider, hljsServiceProvider) {
     $locationProvider.html5Mode(true);
 
     $compileProvider.debugInfoEnabled('<dev-only-angular-debug-info>');
@@ -50,7 +52,6 @@ app.config(function($locationProvider, $compileProvider, $httpProvider, $statePr
                 }
             }
         })
-
         .state('folder', {
             url: '/repo/:name/tree/master/*path',
             onEnter: function() {
@@ -72,10 +73,37 @@ app.config(function($locationProvider, $compileProvider, $httpProvider, $statePr
                 }
             }
         })
+        .state('file', {
+            url: '/repo/:name/blob/master/*path',
+            onEnter: function() {
+            },
+            views: {
+                'header': {
+                    template: 'header'
+                },
+                'content': {
+                    component: 'filePage'
+                }
+            },
+            resolve: {
+                repoName: ($stateParams)=> {
+                    return $stateParams.name;
+                },
+                filePath: ($stateParams)=> {
+                    return $stateParams.path;
+                }
+            }
+        })
         .state('xxx', {
             url: '/xxx',
             template: 'nononono'
         })
+
+    hljsServiceProvider.setOptions({
+        // replace tab with 2 spaces
+        tabReplace: '  '
+    });
+
 });
 
 

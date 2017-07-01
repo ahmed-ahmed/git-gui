@@ -5,5 +5,28 @@ body {
 
 /*Repos List */
 .repos-list h4{
-  padding-top: 10px
+  padding-top: 5px
 }
+
+
+/*.tab-container {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-width: 0 1px 1px 1px;
+}
+*/
+pre {
+    /* padding: 0 .3em; */
+    border: none;
+    margin-bottom: 0;
+    background-color: transparent;
+}
+
+pre code {
+    background: none;
+    background-color: transparent;
+}
+
+/*.nav {
+    margin-bottom: 0;
+}*/

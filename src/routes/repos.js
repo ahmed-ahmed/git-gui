@@ -24,8 +24,10 @@ controller.get('/:repo/tree/:branch/*', (req, res) => {
     });
 });
 controller.get('/:repo/blob/:branch/*', (req, res) => {
-    res.json(req.params)
-    // res.json(req.params.path);
+    let {repo,branch} = req.params
+    service.getFile(repo, branch, req.params[0]).then(data => {
+         res.json(data);
+    });
 });
 
 // controller.get('/:repo/:folder/files', (req, res) => {

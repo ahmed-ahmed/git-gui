@@ -45,15 +45,24 @@ function getRepos() {
 }
 
 // check if file exists
-exports.getReadme = (path) => {
+// exports.getFile = (path) => {
+//     var deferred = $q.defer();
+//     fs.readFile(path , function(err, data) {
+//         if (err) throw err;
+//         deferred.resolve(data.toString());
+//     });
+//     return deferred.promise;
+// }
+
+
+exports.getFile = (repo, branch, path) => {
     var deferred = $q.defer();
-    fs.readFile(path + `/README.md`, function(err, data) {
+
+    var repoPath = repos[repo].path;
+    var filePath = repoPath + '/' + path;
+
+    fs.readFile(filePath, function(err, data) {
         if (err) throw err;
-        // let repos = [];
-        // data.toString().split("\n").forEach((line)=> {
-        //     var item = line.split('\t');
-        //     repos.push(new Repo(item[0], item[1]));
-        // })
         deferred.resolve(data.toString());
     });
     return deferred.promise;

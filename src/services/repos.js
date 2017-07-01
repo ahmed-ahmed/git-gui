@@ -3,14 +3,34 @@ console.log('docker service started');
 
 var p = require('child_process');
 var $q = require('q');
+var path = require('path');
+
 var exec = p.exec;
 var spawn = p.spawn;
-
 var fs = require('fs');
-var reposPath = `/home/ubuntu/.gitviewer/.repos`
-var blamePath = `/home/ubuntu/workspace/bash/better-blame.sh`
+var packagePath = process.cwd();
 
-exports.getRepos = () => {
+var reposPath = `${packagePath}/settings/repos`
+var blamePath = `${packagePath}/bash/better-blame.sh`
+
+var repos = {};
+getRepos().then(data => {
+    repos = data.reduce(function(result, item) {
+        result[item.name] = item; //a, b, c
+        return result;
+    }, {});
+
+    console.log(repos);
+});
+
+exports.getRepos = ()=>{
+     var vals = Object.keys(repos).map(function(key) {
+        return repos[key];
+    });
+     return vals;
+}
+
+function getRepos() {
     var deferred = $q.defer();
     fs.readFile(reposPath, function(err, data) {
         if (err) throw err;
@@ -39,28 +59,55 @@ exports.getReadme = (path) => {
     return deferred.promise;
 }
 
-
-exports.getFiles = (repoPath) => {
+//todo: branchs
+exports.getFiles = (repo, branch, path) => {
     var deferred = $q.defer();
     var cmd = blamePath;
-    console.log(cmd)
+    var repoPath = repos[repo].path;
+    var workingDir = repoPath + '/' + path;
 
-    exec(cmd, {cwd: repoPath}, (err, data, derr) => {
-        
-        console.log(err);
-        console.log(data);
-        console.log(derr);
-        
+    exec(cmd, {cwd: workingDir}, (err, data, derr) => {
         let files = [];
+        let folders = [];
+        //todo: remove empty item 
         let items = data.split('\n');
-        
         items.forEach(row=>{
-            files.push(new File(...row.split('|')));
+            var item = new File(...row.split('|'))
+            if(item.size === '-') { //folder
+                folders.push(item);
+            }else {
+                files.push(item);
+            }
         })
-        deferred.resolve(files);
+        deferred.resolve(folders.concat(files));
     });
     return deferred.promise;
 }
+
+
+// exports.getFiles = (repoPath) => {
+//     console.log(repoPath);
+    
+//     var deferred = $q.defer();
+//     var cmd = blamePath;
+//     console.log(cmd)
+
+//     exec(cmd, {cwd: repoPath}, (err, data, derr) => {
+        
+//         console.log(err);
+//         console.log(data);
+//         console.log(derr);
+        
+//         let files = [];
+//         let items = data.split('\n');
+        
+//         items.forEach(row=>{
+//             files.push(new File(...row.split('|')));
+//         })
+//         deferred.resolve(files);
+//     });
+//     return deferred.promise;
+// }
 
 
 class Repo{
@@ -81,3 +128,5 @@ class File{
         this.size = size;
     }
 }
+
+

@@ -1,7 +1,4 @@
 'use strict';
-
-import angular from 'angular';
-
 class ContainersService {
     constructor($http) {
         this.$http = $http;

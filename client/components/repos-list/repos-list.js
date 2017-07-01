@@ -1,4 +1,6 @@
 import template from './repos-list.html';
+import app from '../../modules.js';
+
 
 class ReposListController{
     constructor(reposService) {
@@ -20,5 +22,7 @@ let component = {
     template,
     controller: ReposListController
 };
+
+app.component('reposList', component);
 
 export default component;

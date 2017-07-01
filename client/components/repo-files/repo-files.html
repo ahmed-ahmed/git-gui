@@ -1,3 +1,5 @@
+HI : {{$ctrl.repoName}}
+
 <div class="repos-list panel panel-default">
     <div class="panel-heading clearfix">
         <h4 class="panel-title pull-left">
@@ -6,28 +8,20 @@
     </div>
     <table class="table table-hover">
         <tr ng-repeat="file in $ctrl.files track by file.name">
-            <td>
-                <i class="glyphicon glyphicon-file" ng-if="file.size!=='-'"></i>
-                <i class="glyphicon glyphicon-folder-open" ng-if="file.size==='-'"></i>
+            <td ng-if="file.size!=='-'">
+                <i class="glyphicon glyphicon-file" ></i>
                 {{file.name}}
+            </td>
+            <td ng-if="file.size==='-'">
+                <i class="glyphicon glyphicon-folder-open"></i>
+                <!-- /repo/:name/tree/master/*path -->
+                <a href="/repo/{{$ctrl.repoName}}/tree/master/{{$ctrl.folderName}}/{{file.name}}">
+                    {{file.name}}
+                </a>
             </td>
             <td>{{file.commitMessage}}</td>
             <td>{{file.lastModifiedDate}}</td>
             <td>{{file.changedBy}}</td>
         </tr>
     </table>
-</div>
-
-
-<div class="repos-list panel panel-default">
-    <div class="panel-heading clearfix">
-        <h4 class="panel-title pull-left">
-             README.md
-        </h4>
-    </div>
-    <div class="panel-body">
-        <div marked="$ctrl.readme">
-
-        </div>
-    </div>
 </div>

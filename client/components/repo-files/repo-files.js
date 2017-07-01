@@ -2,30 +2,24 @@ import template from './repo-files.html';
 
 class ReposListController{
     constructor(reposService) {
-        this.service = reposService;
-        this.repoName = `githubclone`;
-        console.log(this.repoName);
-        
-        reposService.getFiles(this.repoName).then((res)=>{
+        this.reposService = reposService
+    }
+    $onInit() {
+        this.reposService.getFiles(this.repoName, this.folderName).then((res)=>{
             this.files = res.data;
-            console.log(this.files);
-        });
-        
-        reposService.getReadMe(this.repoName).then((res)=>{
-            this.readme = res.data
         });
     }
+
 }
 
-
-let component = {
+const component = {
     bindings: {
-        // userName: '@',
-        repoName: '<'
-        // path: '<'
+        folderName: '<',
+        repoName: '<',
     },
-    template,
-    controller: ReposListController
+    controller: ReposListController,
+    template
 };
 
-export default component;
+angular.module('app')
+    .component('repoFiles', component);

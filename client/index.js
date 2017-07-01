@@ -1,20 +1,17 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 import Showdown from 'showdown';
-var app = angular.module('app', ['ui.router', 'hc.marked'])
-
+import app from './modules.js'
 window.Showdown  = Showdown ;
+
 ///////services 
-import reposService from './components/repos-list/repos-list-service.js';
-app.service('reposService', reposService);
-
-
+import './components/repos-list/repos-list-service.js';
 ////// components
-import reposListComponent from './components/repos-list/repos-list.js';
-import repoFilesComponent from './components/repo-files/repo-files.js';
+import './components/repos-page/repos-page.js';
+import './components/repos-list/repos-list.js';
+import './components/repo-files/repo-files.js';
 
-app.component('reposList', reposListComponent);
-app.component('repoFiles', repoFilesComponent);
+
 
 
 app.config(function($locationProvider, $compileProvider, $httpProvider, $stateProvider) {
@@ -42,27 +39,20 @@ app.config(function($locationProvider, $compileProvider, $httpProvider, $statePr
         })
         .state('repo', {
             url: '/repo/:name',
-            onEnter: function() {
-            },
             views: {
-                'header': {
-                    template: 'header'
-                },
-                'content': {
-                    component: 'repoFiles'
+                "content": {
+                    component: "reposPage"
                 }
             },
             resolve: {
                 repoName: ($stateParams)=> {
                     return $stateParams.name;
-                },
-                id: function($stateParams) {
-                    return $stateParams.id
                 }
             }
         })
+
         .state('folder', {
-            url: '/repo/:name/tree/master/:folder',
+            url: '/repo/:name/tree/master/*path',
             onEnter: function() {
             },
             views: {
@@ -77,8 +67,8 @@ app.config(function($locationProvider, $compileProvider, $httpProvider, $statePr
                 repoName: ($stateParams)=> {
                     return $stateParams.name;
                 },
-                id: function($stateParams) {
-                    return $stateParams.id
+                folderName: ($stateParams)=> {
+                    return $stateParams.path;
                 }
             }
         })
@@ -87,3 +77,5 @@ app.config(function($locationProvider, $compileProvider, $httpProvider, $statePr
             template: 'nononono'
         })
 });
+
+

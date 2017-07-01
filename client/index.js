@@ -11,12 +11,12 @@ import './components/repos-page/repos-page.js';
 import './components/repos-list/repos-list.js';
 import './components/repo-files/repo-files.js';
 import './components/file-page/file-page.js';
-import './components/code/code.js';
+// import './components/code/code.js';
 
 
 
 
-app.config(function($locationProvider, $compileProvider, $httpProvider, $stateProvider, hljsServiceProvider) {
+app.config(function($locationProvider, $compileProvider, $httpProvider, $stateProvider) {
     $locationProvider.html5Mode(true);
 
     $compileProvider.debugInfoEnabled('<dev-only-angular-debug-info>');
@@ -99,10 +99,10 @@ app.config(function($locationProvider, $compileProvider, $httpProvider, $statePr
             template: 'nononono'
         })
 
-    hljsServiceProvider.setOptions({
-        // replace tab with 2 spaces
-        tabReplace: '  '
-    });
+    // hljsServiceProvider.setOptions({
+    //     // replace tab with 2 spaces
+    //     tabReplace: '  '
+    // });
 
 });
 

@@ -15,6 +15,7 @@
     "angular-markdown-directive": "^0.3.1",
     "angular-marked": "^1.2.2",
     "angular-sanitize": "^1.6.4",
+    "angular-ui-codemirror": "^0.3.0",
     "angular-ui-router": "^1.0.3",
     "body-parser": "^1.17.2",
     "child_process": "^1.0.2",

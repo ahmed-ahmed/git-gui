@@ -5,6 +5,15 @@ class filePageController{
     constructor(reposService, $timeout){
         this.reposService = reposService;
         this.$timeout = $timeout;
+
+        this.editorOptions =  {
+            lineWrapping : true,
+            lineNumbers: true,
+            theme:'zenburn',
+            readOnly: 'nocursor',
+            mode: 'javascript',
+            scrollbarStyle: null
+        };
     }
 
     $onInit() {       

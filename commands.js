@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var path = require('path');
 // var chalk       = require('chalk');
 // var mkdirp = require('mkdirp');
@@ -13,14 +15,18 @@ ensureDirectoryExistence(reposDir);
 var fileName = reposDir + `/repos`;
 
 console.log(argv);
-let reposName = argv._[2] || argv.name || __dirname
+
+// process.chdir();
+
+
+let reposName = argv._[2] || argv.name || process.cwd()
 
 console.log(reposName);
 // if (!fs.existsSync(fileName)) {
 //   fs.writeFileSync(fileName);
 // }
 
-fs.appendFile(fileName, `${reposName}\t${__dirname}\n`, function (err) {
+fs.appendFile(fileName, `${reposName}\t${process.cwd()}\n`, function (err) {
   if (err) throw err;
   console.log('Saved!');
 });

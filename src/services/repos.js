@@ -10,7 +10,7 @@ var spawn = p.spawn;
 var fs = require('fs');
 var packagePath = process.cwd();
 
-var reposPath = `${packagePath}/settings/repos`
+var reposPath = getUserHome() + '/.git-gui/repos'; //`${packagePath}/settings/repos`
 var blamePath = `${packagePath}/bash/better-blame.sh`
 
 var repos = {};
@@ -138,4 +138,8 @@ class File{
     }
 }
 
+
+function getUserHome() {
+  return process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
+}
 

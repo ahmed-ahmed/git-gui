@@ -1,5 +1,5 @@
 import angular from 'angular';
-import '@uirouter/angularjs';
+import 'angular-ui-router';
 import Showdown from 'showdown';
 import app from './modules.js'
 window.Showdown  = Showdown ;

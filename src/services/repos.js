@@ -13,50 +13,32 @@ var packagePath = process.cwd();
 var reposPath = getUserHome() + '/.git-gui/repos'; //`${packagePath}/settings/repos`
 var blamePath = `${packagePath}/bash/better-blame.sh`
 
-var repos = {};
-getRepos().then(data => {
-    repos = data.reduce(function(result, item) {
-        result[item.name] = item; //a, b, c
-        return result;
-    }, {});
-
-    console.log(repos);
-});
-
 exports.getRepos = ()=>{
-     var vals = Object.keys(repos).map(function(key) {
+    var repos = getRepos();
+    var vals = Object.keys(repos).map(function(key) {
         return repos[key];
     });
      return vals;
 }
 
 function getRepos() {
-    var deferred = $q.defer();
-    fs.readFile(reposPath, function(err, data) {
-        if (err) throw err;
-        let repos = [];
-        data.toString().split("\n").forEach((line)=> {
-            var item = line.split('\t');
-            repos.push(new Repo(item[0], item[1]));
-        })
-        deferred.resolve(repos);
-    });
-    return deferred.promise;
+    let data = fs.readFileSync(reposPath);
+    let repos = [];
+    data.toString().split("\n").forEach((line)=> {
+        var item = line.split('\t');
+        repos.push(new Repo(item[0], item[1]));
+    })
+    console.log(repos);
+    return repos.reduce(function(result, item) {
+        result[item.name] = item; //a, b, c
+        return result;
+    }, {});
+
 }
-
-// check if file exists
-// exports.getFile = (path) => {
-//     var deferred = $q.defer();
-//     fs.readFile(path , function(err, data) {
-//         if (err) throw err;
-//         deferred.resolve(data.toString());
-//     });
-//     return deferred.promise;
-// }
-
 
 exports.getFile = (repo, branch, path) => {
     var deferred = $q.defer();
+    var repos = getRepos();
 
     var repoPath = repos[repo].path;
     var filePath = repoPath + '/' + path;
@@ -72,6 +54,8 @@ exports.getFile = (repo, branch, path) => {
 exports.getFiles = (repo, branch, path) => {
     var deferred = $q.defer();
     var cmd = blamePath;
+    var repos = getRepos();
+    console.log(repos)
     var repoPath = repos[repo].path;
     var workingDir = repoPath + '/' + path;
 
@@ -92,32 +76,6 @@ exports.getFiles = (repo, branch, path) => {
     });
     return deferred.promise;
 }
-
-
-// exports.getFiles = (repoPath) => {
-//     console.log(repoPath);
-    
-//     var deferred = $q.defer();
-//     var cmd = blamePath;
-//     console.log(cmd)
-
-//     exec(cmd, {cwd: repoPath}, (err, data, derr) => {
-        
-//         console.log(err);
-//         console.log(data);
-//         console.log(derr);
-        
-//         let files = [];
-//         let items = data.split('\n');
-        
-//         items.forEach(row=>{
-//             files.push(new File(...row.split('|')));
-//         })
-//         deferred.resolve(files);
-//     });
-//     return deferred.promise;
-// }
-
 
 class Repo{
     constructor(name,path) {

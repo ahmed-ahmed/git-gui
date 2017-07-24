@@ -1,46 +1,32 @@
 #!/usr/bin/env node
 
 var path = require('path');
-// var chalk       = require('chalk');
-// var mkdirp = require('mkdirp');
+var chalk       = require('chalk');
+var mkdirp = require('mkdirp');
 var argv = require('minimist')(process.argv);
 var fs = require('fs')
 
-
-
 var homePath = getUserHome();
 var reposDir = `${homePath}/.git-gui`
-
-ensureDirectoryExistence(reposDir);
 var fileName = reposDir + `/repos`;
 
-console.log(argv);
 
-// process.chdir();
+if (!fs.existsSync(reposDir)) {
+  mkdirp(reposDir, function (err) {
+    if (err) console.error(err)
+    else console.log('created setting directory')
+  });
 
+}
 
 let reposName = argv._[2] || argv.name || process.cwd()
 
-console.log(reposName);
-// if (!fs.existsSync(fileName)) {
-//   fs.writeFileSync(fileName);
-// }
+console.log(`reposName: ${reposName} added`);
 
 fs.appendFile(fileName, `${reposName}\t${process.cwd()}\n`, function (err) {
   if (err) throw err;
   console.log('Saved!');
 });
-
-
-function ensureDirectoryExistence(filePath) {
-  var dirname = path.dirname(filePath);
-  console.log(filePath)
-  if (fs.existsSync(dirname)) {
-    return true;
-  }
-  return ensureDirectoryExistence(dirname);
-  fs.mkdirSync(dirname);
-}
 
 
 function getUserHome() {

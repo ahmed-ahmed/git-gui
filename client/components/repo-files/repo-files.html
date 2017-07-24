@@ -7,7 +7,7 @@ HI : {{$ctrl.repoName}}
         </h4>
     </div>
     <table class="files-list table table-hover">
-        <tr ng-repeat="file in $ctrl.files track by file.name">
+        <tr ng-repeat="file in $ctrl.files track by $index">
             <td>
                 <i ng-if="file.size!=='-'" class="fa fa-file-text-o" ></i>
                 <i ng-if="file.size==='-'" class="fa fa-folder-o"></i>

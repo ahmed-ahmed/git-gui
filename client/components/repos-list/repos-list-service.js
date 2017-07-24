@@ -8,6 +8,9 @@ class ReposService {
     constructor($http) {
         this.$http = $http;
     }
+    addRepo(name, path) {
+        return this.$http.post('/api/repos', {name: name, path: path});
+    }
     getRepos() {
         return this.$http.get('/api/repos');
     }

@@ -1,0 +1,11 @@
+<h1>Add Existing Repo</h1>
+
+<div class="form-group">
+    <label for="name">Repo Name:</label>
+    <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" ng-model="$ctrl.name">
+</div>
+<div class="form-group">
+    <label for="path">path:</label>
+    <input type="text" class="form-control" id="path" placeholder="Enter path" name="path" ng-model="$ctrl.path">
+</div>
+<button type="submit" class="btn btn-default" ng-click="$ctrl.addRepo()">Submit</button>

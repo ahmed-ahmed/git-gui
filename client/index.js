@@ -12,7 +12,7 @@ import './components/repos-list/repos-list.js';
 import './components/repo-files/repo-files.js';
 import './components/file-page/file-page.js';
 import './components/code/code.js';
-
+import './components/addRepo/add-repo.js'
 
 
 
@@ -37,6 +37,14 @@ app.config(function($locationProvider, $compileProvider, $httpProvider, $statePr
                 }
 
 
+            }
+        })
+        .state('addExistingRepo', {
+            url: '/repo/add',
+            views: {
+                content: {
+                    component: 'addRepo'
+                }
             }
         })
         .state('repo', {

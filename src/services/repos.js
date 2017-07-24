@@ -13,6 +13,29 @@ var packagePath = process.cwd();
 var reposPath = getUserHome() + '/.git-gui/repos'; //`${packagePath}/settings/repos`
 var blamePath = `${packagePath}/bash/better-blame.sh`
 
+exports.addRepo = (name, path)=> {
+
+    var homePath = getUserHome();
+    var reposDir = `${homePath}/.git-gui`
+    var fileName = reposDir + `/repos`;
+
+
+    if (!fs.existsSync(reposDir)) {
+    mkdirp(reposDir, function (err) {
+        if (err) console.error(err)
+        else console.log('created setting directory')
+    });
+
+    }
+
+    fs.appendFile(fileName, `${name}\t${path}\n`, function (err) {
+        if (err) throw err;
+        console.log('Saved!');
+    });
+
+    return true;
+}
+
 exports.getRepos = ()=>{
     var repos = getRepos();
     var vals = Object.keys(repos).map(function(key) {

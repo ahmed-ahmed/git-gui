@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon | webpack --watch",
     "test": "NODE_ENV=test mocha --colors '**/*.spec.js'",
-    "itest": "mocha --colors --watch 'integrationTests/*.integration.js'"
+    "itest": "mocha --colors --watch 'integrationTests/*.integration.js'",
+    "build-production": "webpack -p"
   },
   "bin": {
     "git-gui": "./index.js",

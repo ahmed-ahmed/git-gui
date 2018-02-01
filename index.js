@@ -21,12 +21,3 @@ app.listen(port);
 console.log("Listening on port " + port);
 
 module.exports = app; // for testing
-
-
-// console.log(process.env.PORT);
-// server.listen(process.env.PORT || 80, process.env.IP || "0.0.0.0", function(){
-//   var addr = server.address();
-//   console.log("Server listening at", addr.address + ":" + addr.port);
-// });
-
-// module.exports = server

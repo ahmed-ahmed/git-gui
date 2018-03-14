@@ -19,12 +19,12 @@ HI : {{$ctrl.repoName}}
             <td>
 
             <!-- /repo/:name/blob/master/*path -->
-            <a ng-if="file.size!=='-'" href="/repo/{{$ctrl.repoName}}/blob/master/{{$ctrl.folderName}}/{{file.name}}">
+            <!-- <a ng-if="file.size!=='-'" href="/repo/{{$ctrl.repoName}}/blob/master/{{$ctrl.folderName}}/{{file}}">
                     {{file.name}}
-                </a>
+                </a> -->
 
-                
-                <a ng-if="file.size==='-'" href="/repo/{{$ctrl.repoName}}/tree/master/{{$ctrl.folderName}}/{{file.name}}">
+                <a ng-href="{{$ctrl.getPath($ctrl.repoName, $ctrl.folderName, file)}}">
+                <!-- <a ng-if="file.size==='-'" href="$ctrl.getPath($ctrl.repoName, $ctrl.folderName)/repo/{{$ctrl.repoName}}/tree/master/{{$ctrl.folderName}}/{{file.name}}"> -->
                     {{file.name}}
                 </a>
             </td>

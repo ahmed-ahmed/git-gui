@@ -1,0 +1,44 @@
+{
+  "name": "git-gui",
+  "version": "0.0.7",
+  "description": "Web based graphical user interface for git.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon | webpack --watch",
+    "test": "NODE_ENV=test mocha --colors '**/*.spec.js'",
+    "itest": "mocha --colors --watch 'integrationTests/*.integration.js'",
+    "build-production": "webpack -p"
+  },
+  "bin": {
+    "git-gui": "./index.js",
+    "git-gui-add": "./commands.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "chalk": "^1.1.3",
+    "child_process": "^1.0.2",
+    "clear": "0.0.1",
+    "execa": "^0.9.0",
+    "express": "^4.15.3",
+    "figlet": "^1.2.0",
+    "inquirer": "^3.0.6",
+    "lodash": "^4.17.4",
+    "minimist": "^1.2.0",
+    "mkdirp": "^0.5.1",
+    "prompt": "^1.0.0",
+    "q": "^1.5.0",
+    "showdown": "^1.7.1",
+    "simple-git": "^1.70.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^2.0.1",
+    "html-loader": "^0.4.5",
+    "mocha": "^2.4.5",
+    "nodemon": "latest",
+    "npm-run-parallel": "^0.5.0"
+  }
+}

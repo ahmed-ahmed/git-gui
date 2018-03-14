@@ -1,13 +1,12 @@
 'use strict';
-console.log('docker service started');
+var File = require('../models/file');
+var Repo = require('../models/repo');
 
-var p = require('child_process');
-var $q = require('q');
 var path = require('path');
+const execa = require('execa');
 
-var exec = p.exec;
-var spawn = p.spawn;
-var fs = require('fs');
+
+const fs = require('fs-extra')
 var packagePath = process.cwd();
 
 var reposPath = getUserHome() + '/.git-gui/repos'; //`${packagePath}/settings/repos`
@@ -60,29 +59,20 @@ function getRepos() {
 }
 
 exports.getFile = (repo, branch, path) => {
-    var deferred = $q.defer();
     var repos = getRepos();
-
     var repoPath = repos[repo].path;
     var filePath = repoPath + '/' + path;
-
-    fs.readFile(filePath, function(err, data) {
-        if (err) throw err;
-        deferred.resolve(data.toString());
-    });
-    return deferred.promise;
+    return fs.readFile(filePath)
 }
 
 //todo: branchs
 exports.getFiles = (repo, branch, path) => {
-    var deferred = $q.defer();
-    var cmd = blamePath;
     var repos = getRepos();
-    console.log(repos)
     var repoPath = repos[repo].path;
     var workingDir = repoPath + '/' + path;
-
-    exec(cmd, {cwd: workingDir}, (err, data, derr) => {
+    var cmd = blamePath;
+    return execa.shell(cmd, {cwd: workingDir},).then(results => {
+        let data = results.stdout
         let files = [];
         let folders = [];
         //todo: remove empty item 
@@ -95,30 +85,9 @@ exports.getFiles = (repo, branch, path) => {
                 files.push(item);
             }
         })
-        deferred.resolve(folders.concat(files));
-    });
-    return deferred.promise;
+        return folders.concat(files);
+    })
 }
-
-class Repo{
-    constructor(name,path) {
-        this.name = name;
-        this.path = path;
-    }
-}
-
-class File{
-    constructor(name,lastModifiedDate, changedBy, commitMessage, size) {
-        console.log(lastModifiedDate);
-        this.name = name;
-        // this.path = path;
-        this.lastModifiedDate = lastModifiedDate;
-        this.changedBy = changedBy;
-        this.commitMessage = commitMessage;
-        this.size = size;
-    }
-}
-
 
 function getUserHome() {
   return process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];

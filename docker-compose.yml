@@ -1,0 +1,10 @@
+version: '3'
+services:
+  git-gui-backend:
+    build: ./server
+    volumes:
+      - ./src:/usr/src/app
+    environment:
+      - PORT=3000
+    ports: 
+      - 3000:3000

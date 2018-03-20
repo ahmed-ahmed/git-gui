@@ -7,9 +7,9 @@ class ReposPageController{
     }
 
     $onInit() {
-        this.reposService.getReadMe(this.repoName).then((res)=>{
-            this.readme = res.data
-        });
+        // this.reposService.getReadMe(this.repoName).then((res)=>{
+        //     this.readme = res.data
+        // });
     }
 }
 

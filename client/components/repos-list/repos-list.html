@@ -1,7 +1,36 @@
-<table class="table">
-    <tr ng-repeat="repos in $ctrl.repos track by $index">
-        <td>
-            <a ui-sref="repo({user:$ctrl.user, name:repos.name})">{{repos.name}}</a>
-        </td>
-    </tr>
-</table>
+<div class="panel panel-success panel-line">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <i class="fa fa-cubes" aria-hidden="true"></i>
+
+            Repositories
+        </h3>
+    </div>
+    <div class="panel-body">
+        <div class="comments">
+            <div class="comment media" ng-repeat="repos in $ctrl.repos track by $index">
+                <div class="pr-15">
+                    <i class="icon oi-repo" aria-hidden="true"></i>
+                </div>
+                <div class="comment-body media-body">
+                    <div class="comment-title">
+                        <div class="comment-meta float-right">
+                            <span>04.07.11, 8:02 AM</span>
+                        </div>
+                        <a class="comment-author" ui-sref="repo({user:$ctrl.user, name:repos.name})">
+                            {{repos.name}}
+                        </a>
+                    </div>
+                    <div class="comment-content">
+                        <p>
+                            Velit fugiat sunt deserunt ipsum est elit. Aliqua est cillum est duis ad officia irure fugiat. Officia ex voluptate velit
+                            incididunt. Aute do tempor velit commodo occaecat id pariatur quis. Magna culpa do enim ad qui
+                            reprehenderit ipsum aliqua. Aliqua duis ullamco adipisicing anim reprehenderit pariatur. Sunt
+                            sit amet est nostrud pariatur. Culpa eu anim qui duis.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

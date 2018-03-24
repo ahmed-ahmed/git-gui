@@ -33,10 +33,14 @@
 
 
     <!-- Fonts -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+        crossorigin="anonymous" />
     <link rel="stylesheet" href="theme/global/fonts/weather-icons/weather-icons.css">
-    <link rel="stylesheet" href="theme/global/fonts/web-icons/web-icons.min.css">
-    <link rel="stylesheet" href="theme/global/fonts/brand-icons/brand-icons.min.css">
+    
+
+    <link rel="stylesheet" href="theme/global/fonts/octicons/octicons.css">
+    <link rel="stylesheet" href="theme/global/fonts/web-icons/web-icons.css">
+    <link rel="stylesheet" href="theme/global/fonts/ionicons/ionicons.css">
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
 
     <!--[if lt IE 9]>
@@ -53,8 +57,8 @@
     <script>
       Breakpoints();
     </script> -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="css/main.css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/main.css" />
 </head>
 
 <body class="animsition dashboard" ng-app="app">
@@ -518,12 +522,12 @@
     <!-- Page -->
     <div class="page">
         <div class="page-header">
-            <h1 class="page-title">Form General Elements</h1>
+            <h1 class="page-title"></h1>
             <div ui-view="breadcrumb">
-                
+
             </div>
 
-            
+
             <div class="page-header-actions">
                 <button type="button" class="btn btn-sm btn-icon btn-default btn-outline btn-round" data-toggle="tooltip" data-original-title="Edit">
                     <i class="icon wb-pencil" aria-hidden="true"></i>
@@ -539,18 +543,18 @@
 
         <div class="page-content">
             <!-- Panel Form Elements -->
-            <div class="panel">
-                <div class="panel-heading">
+            <!-- <div class="panel"> -->
+            <!-- <div class="panel-heading">
                     <h3 class="panel-title">Form Elements</h3>
-                </div>
-                <div class="panel-body container-fluid">
+                </div> -->
+            <!-- <div class="panel-body container-fluid">
                     <div class="row row-lg">
-                        <div class="col-md-12 col-lg-12">
-                            <div ui-view="content"></div>
-                        </div>
+                        <div class="col-md-12 col-lg-12"> -->
+            <div ui-view="content"></div>
+            <!-- </div>
                     </div>
-                </div>
-            </div>
+                </div> -->
+            <!-- </div> -->
             <!-- End Panel Form Elements -->
         </div>
     </div>
@@ -569,7 +573,7 @@
             <a href="https://themeforest.net/user/creation-studio">Creation Studio</a>
         </div>
     </footer>
-    
+
     <script src="theme/global/vendor/jquery/jquery.js"></script>
 
     <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script> -->
@@ -585,7 +589,7 @@
     <script src="js/index.js"></script>
     <!-- Core  -->
     <!---->
-     <!-- <script src="theme/global/vendor/babel-external-helpers/babel-external-helpers.js"></script>
+    <!-- <script src="theme/global/vendor/babel-external-helpers/babel-external-helpers.js"></script>
     
     <script src="theme/global/vendor/popper-js/umd/popper.min.js"></script>
     <script src="theme/global/vendor/bootstrap/bootstrap.js"></script>
@@ -609,7 +613,8 @@
     <script src="theme/global/vendor/jvectormap/maps/jquery-jvectormap-au-mill-en.js"></script>
     <script src="theme/global/vendor/matchheight/jquery.matchHeight-min.js"></script>
     -->
-    <!-- Scripts --><!--
+    <!-- Scripts -->
+    <!--
     <script src="theme/global/js/Component.js"></script>
     <script src="theme/global/js/Plugin.js"></script>
     <script src="theme/global/js/Base.js"></script>

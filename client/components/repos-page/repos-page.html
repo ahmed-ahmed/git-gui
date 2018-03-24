@@ -1,9 +1,38 @@
-<app-select items="$ctrl.branches"></app-select>
+<!-- <div class="panel panel-success panel-line panel-bordered hide"> -->
+    <!-- <div class="panel-heading">
+            <h3 class="panel-title">
+                
+            </h3>
+        </div> -->
+    <!-- <div class="panel-body">
+        <div class="row">
+            <div class="col-md-3">
+                <app-select items="$ctrl.branches"></app-select>
+            </div>
+            <div class="col-md-4 push-right">
+                <div class="btn-group" aria-label="Basic example" role="group">
+                    <button type="button" class="btn btn-outline btn-default">
+                        <i class="icon wb-pencil" aria-hidden="true"></i>Edit</button>
+                    <button type="button" class="btn btn-outline btn-default">
+                        <i class="icon wb-reply" aria-hidden="true"></i>Reply</button>
+                    <button type="button" class="btn btn-outline btn-default">
+                        <i class="icon wb-share" aria-hidden="true"></i>Share</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+
+    </div>
+</div> -->
+
+
+
 
 <repo-files repo-name="$ctrl.repoName"></repo-files>
 
 
-<div class="panel panel-primary panel-line panel-bordered">
+<div class="panel panel-success panel-line panel-bordered">
     <div class="panel-heading">
         <h3 class="panel-title">
             <i class="icon wb-book" aria-hidden="true"></i>
@@ -14,4 +43,3 @@
         <p markdown-to-html="$ctrl.readme"></p>
     </div>
 </div>
-

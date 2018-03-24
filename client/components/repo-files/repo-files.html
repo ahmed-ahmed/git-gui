@@ -1,32 +1,40 @@
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Last Commit</th>
-            <th>Last Update</th>
-            <th>User</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="file in $ctrl.files track by $index">
-            <td>
-                <i ng-if="file.size!=='-'" class="fa fa-file-text-o" ></i>
-                <i ng-if="file.size==='-'" class="fa fa-folder"></i>
-            </td>
-            <td>
-                <a ng-href="{{$ctrl.getPath($ctrl.repoName, $ctrl.folderName, file)}}">
-                    {{file.name}}
-                </a>
-            </td>
-            <td>
-                <span ng-attr-title="{{file.commitMessage}}">
-                    {{file.commitMessage| limitTo : 50}}    
-                </span>
-                <span ng-if="file.commitMessage.length > 50">...</span>
-            </td>
-            <td>{{file.lastModifiedDate}}</td>
-            <td>{{file.changedBy}}</td>
-        </tr>
-    </tbody>
-</table>
+<div class="panel panel-success panel-line">
+    <div class="panel-heading">
+        <h3 class="panel-title">Files</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Last Commit</th>
+                    <th>Last Update</th>
+                    <th>User</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="file in $ctrl.files track by $index">
+                    <td>
+                        <i ng-if="file.size!=='-'" class="fa fa-file-text-o"></i>
+                        <i ng-if="file.size==='-'" class="fa fa-folder"></i>
+                    </td>
+                    <td>
+                        <a ng-href="{{$ctrl.getPath($ctrl.repoName, $ctrl.folderName, file)}}">
+                            {{file.name}}
+                        </a>
+                    </td>
+                    <td>
+                        <span ng-attr-title="{{file.commitMessage}}">
+                            {{file.commitMessage| limitTo : 50}}
+                        </span>
+                        <span ng-if="file.commitMessage.length > 50">...</span>
+                    </td>
+                    <td>{{file.lastModifiedDate}}</td>
+                    <td>{{file.changedBy}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

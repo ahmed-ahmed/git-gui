@@ -2,7 +2,7 @@ import angular from 'angular';
 import 'angular-ui-router';
 import Showdown from 'showdown';
 import app from './modules.js'
-window.Showdown  = Showdown ;
+window.Showdown = Showdown;
 
 ///////services 
 import './components/repos-list/repos-list-service.js';
@@ -19,7 +19,7 @@ import './components/code-viewer/code-viewer';
 import './components/breadcrumb/breadcrumb';
 
 
-app.config(function($locationProvider, $compileProvider, $httpProvider, $stateProvider, hljsServiceProvider) {
+app.config(function ($locationProvider, $compileProvider, $httpProvider, $stateProvider, hljsServiceProvider) {
     $locationProvider.html5Mode(true);
 
     $compileProvider.debugInfoEnabled('<dev-only-angular-debug-info>');
@@ -29,7 +29,7 @@ app.config(function($locationProvider, $compileProvider, $httpProvider, $statePr
     $stateProvider
         .state('home', {
             url: '/:user',
-            onEnter: function() {
+            onEnter: function () {
             },
             views: {
                 'header': {
@@ -55,23 +55,23 @@ app.config(function($locationProvider, $compileProvider, $httpProvider, $statePr
             views: {
                 "content": {
                     component: "reposPage"
-                }, 
-                "breadcrumb" : {
+                },
+                "breadcrumb": {
                     component: 'breadcrumb'
                 }
             },
             resolve: {
-                repoName: ($stateParams)=> {
+                repoName: ($stateParams) => {
                     return $stateParams.name;
                 },
-                userName: ($stateParams)=> {
+                userName: ($stateParams) => {
                     return $stateParams.user;
                 }
             }
         })
         .state('folder', {
             url: '/:user/:name/tree/master/*path',
-            onEnter: function() {
+            onEnter: function () {
             },
             views: {
                 'header': {
@@ -80,25 +80,25 @@ app.config(function($locationProvider, $compileProvider, $httpProvider, $statePr
                 'content': {
                     component: 'repoFiles'
                 },
-                "breadcrumb" : {
+                "breadcrumb": {
                     component: 'breadcrumb'
                 }
             },
             resolve: {
-                repoName: ($stateParams)=> {
+                repoName: ($stateParams) => {
                     return $stateParams.name;
                 },
-                folderName: ($stateParams)=> {
+                folderName: ($stateParams) => {
                     return $stateParams.path;
                 },
-                userName: ($stateParams)=> {
+                userName: ($stateParams) => {
                     return $stateParams.user;
                 }
             }
         })
         .state('file', {
             url: '/:user/:name/blob/master/*path',
-            onEnter: function() {
+            onEnter: function () {
             },
             views: {
                 'header': {
@@ -107,15 +107,15 @@ app.config(function($locationProvider, $compileProvider, $httpProvider, $statePr
                 'content': {
                     component: 'filePage'
                 },
-                "breadcrumb" : {
+                "breadcrumb": {
                     component: 'breadcrumb'
                 }
             },
             resolve: {
-                repoName: ($stateParams)=> {
+                repoName: ($stateParams) => {
                     return $stateParams.name;
                 },
-                filePath: ($stateParams)=> {
+                filePath: ($stateParams) => {
                     return $stateParams.path;
                 }
             }
@@ -126,10 +126,24 @@ app.config(function($locationProvider, $compileProvider, $httpProvider, $statePr
         })
 
 
-        hljsServiceProvider.setOptions({
-            // replace tab with 2 spaces
-            tabReplace: '  '
-        });
+    hljsServiceProvider.setOptions({
+        // replace tab with 2 spaces
+        tabReplace: '  '
+    });
+
 });
 
 
+app.run(function($trace, $transitions) {
+    $trace.enable('TRANSITION');
+    $transitions.onStart({ }, function(trans) {
+        console.log(trans);
+        // var SpinnerService = trans.injector().get('SpinnerService');
+        // SpinnerService.transitionStart();
+        // trans.promise.finally(SpinnerService.transitionEnd);
+      });
+    
+
+  })
+
+  

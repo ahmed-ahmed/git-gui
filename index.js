@@ -13,7 +13,13 @@ var branchsController = require('./src/routes/branchs.js');
 app.use('/api/repos', reposController);
 app.use('/api/branchs', branchsController);
 app.use(express.static('client'));
+app.use(express.static('client/theme'));
 
+
+app.get('/theme/*', function(req, res){
+  console.log(req);
+  res.sendFile(__dirname + '/client/index.html');
+});
 
 app.get('/*', function(req, res){
     res.sendFile(__dirname + '/client/index.html');

@@ -6,10 +6,17 @@ class ReposPageController{
         this.reposService = reposService;
     }
 
+
+
     $onInit() {
-        // this.reposService.getReadMe(this.repoName).then((res)=>{
-        //     this.readme = res.data
-        // });
+        // this.branches = async this.reposService.getBranchs(this.repoName);
+        this.reposService.getBranchs(this.repoName).then((res)=>{
+            this.branches = res.data
+        });
+        this.reposService.getFile(this.repoName, 'readme.md').then((res)=>{
+            this.readme = res.data
+        });
+
     }
 }
 

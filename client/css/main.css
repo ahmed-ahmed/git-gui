@@ -1,7 +1,7 @@
-body {
+/* body {
   padding-top: 70px;
   padding-bottom: 30px;
-}
+} */
 
 /* global */
 /* .table>thead>tr>th {
@@ -9,9 +9,9 @@ body {
 } */
 
 /*Repos List */
-.repos-list h4{
+/* .repos-list h4{
   padding-top: 5px
-}
+} */
 
 
 /*.tab-container {
@@ -24,12 +24,13 @@ pre {
     /* padding: 0 .3em; */
     border: none;
     margin-bottom: 0;
-    background-color: transparent;
+    background-color: transparent!important;
 }
 
 pre code {
+    border: none!important;    
     background: none;
-    background-color: transparent;
+    background-color: transparent!important;
 }
 
 /*.nav {

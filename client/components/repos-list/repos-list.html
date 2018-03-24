@@ -1,7 +1,7 @@
 <table class="table">
     <tr ng-repeat="repos in $ctrl.repos track by $index">
         <td>
-            <a ui-sref="repo({name:repos.name})">{{repos.name}}</a>
+            <a ui-sref="repo({user:$ctrl.user, name:repos.name})">{{repos.name}}</a>
         </td>
     </tr>
 </table>

@@ -1,29 +1,35 @@
 import template from './repo-files.html';
 
 class ReposListController{
-    constructor(reposService) {
+    constructor(reposService, $stateParams, $state) {
         this.reposService = reposService
+        this.userName = $stateParams.user;
     }
 
     getPath(repoName, folderName, file) {
         let path;
 
         if(file.size!=='-') {
-            path = `/repo/${repoName}/blob/master/`
+            path = `/${this.userName}/${repoName}/blob/master/`
         } else {
-            path = `/repo/${repoName}/tree/master/`
+            path = `/${this.userName}/${repoName}/tree/master/`
         }
 
         if(folderName) {
-            path = path + folderName + '/';
+            if(!folderName.endsWith('/')) {
+                folderName =  folderName + '/';
+            }
+            path = path +  folderName;
         }
 
         if(file.name) {
             path = path + file.name;
         }
 
+        // console.log(path);
         return path;
-        // return `/repo/{{$ctrl.repoName}}/blob/master/{{$ctrl.folderName}}/{{file.name}}`
+        // return path.replace('///', '/').replace('//', '/');
+        // return `/ahmed/{{$ctrl.repoName}}/blob/master/{{$ctrl.folderName}}/{{file.name}}`
     }
 
     $onInit() {
@@ -37,7 +43,7 @@ class ReposListController{
 const component = {
     bindings: {
         folderName: '<',
-        repoName: '<',
+        repoName: '<'
     },
     controller: ReposListController,
     template

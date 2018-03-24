@@ -1,0 +1,22 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a ui-sref="home({user:$ctrl.user})">
+            {{$ctrl.user}}
+        </a>
+    </li>
+    <li class="breadcrumb-item">
+        <a ui-sref="repo({user:$ctrl.user, name:$ctrl.repoName})">{{$ctrl.repoName}}</a>
+    </li>
+
+    <li class="breadcrumb-item" ng-repeat="path in $ctrl.pathList">
+        <a ng-if="!$last" ng-href="{{path.url}}">{{path.name}}</a>
+        <span ng-if="$last">{{path.name}}</span>
+        <!-- <p ng-if="!{{$last}}">{{path.name}}</p> -->
+        <!-- <a hui-sref="folder({user: $ctrl.user, name: $ctrl.repoName, path: '{{path}}'})">{{path}}</a> -->
+    </li>
+
+    <!-- <li class="breadcrumb-item">
+        <a href="javascript:void(0)">Forms</a>
+    </li>
+    <li class="breadcrumb-item active">General</li> -->
+</ol>

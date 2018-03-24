@@ -9,7 +9,9 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 var reposController = require('./src/routes/repos.js');
+var branchsController = require('./src/routes/branchs.js');
 app.use('/api/repos', reposController);
+app.use('/api/branchs', branchsController);
 app.use(express.static('client'));
 
 

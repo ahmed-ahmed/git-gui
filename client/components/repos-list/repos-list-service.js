@@ -14,12 +14,13 @@ class ReposService {
     getRepos() {
         return this.$http.get('/api/repos');
     }
+
+    getBranchs() {
+        return this.$http.get('/api/branchs');
+    }
     
     getFile(repoName, path) {
-        // /:repo/blob/:branch/*
-        // api/repos/scifinder/tree/master//e2e/pages
-
-        var url = `/api/repos//${repoName}/blob/master/`
+        var url = `/api/repos/${repoName}/blob/master/`
         if(path) {
             url = url + path;
         }
@@ -51,7 +52,7 @@ class ReposService {
         // deferred.resolve({data: data});
         // return deferred.promise;
         // var data = `"# git gui\n\nA graphical user interface to manage git repos\n\n```\nnpm start \nwebpack --watch\n```"
-        return this.$http.get(`/api/repos/${repoName}/readme`);
+        return this.$http.get(`/api/repos/${repoName}/readme.md`);
     }
 
 //     stopContainer(containerId) {

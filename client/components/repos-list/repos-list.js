@@ -3,8 +3,9 @@ import app from '../../modules.js';
 
 
 class ReposListController{
-    constructor(reposService) {
+    constructor(reposService, $stateParams) {
         this.service = reposService;
+        this.user =$stateParams.user;
         
         reposService.getRepos().then((res)=>{
             this.repos = res.data;

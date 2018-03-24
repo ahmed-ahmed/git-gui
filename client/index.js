@@ -12,9 +12,11 @@ import './components/repos-list/repos-list.js';
 import './components/repo-files/repo-files.js';
 import './components/file-page/file-page.js';
 import './components/code/code.js';
-import './components/addRepo/add-repo.js'
-import './components/side-navigation/side-navigation'
-
+import './components/addRepo/add-repo.js';
+import './components/side-navigation/side-navigation';
+import './components/select2/select2';
+import './components/code-viewer/code-viewer';
+import './components/breadcrumb/breadcrumb';
 
 
 app.config(function($locationProvider, $compileProvider, $httpProvider, $stateProvider, hljsServiceProvider) {
@@ -26,7 +28,7 @@ app.config(function($locationProvider, $compileProvider, $httpProvider, $statePr
 
     $stateProvider
         .state('home', {
-            url: '/',
+            url: '/:user',
             onEnter: function() {
             },
             views: {
@@ -49,20 +51,26 @@ app.config(function($locationProvider, $compileProvider, $httpProvider, $statePr
             }
         })
         .state('repo', {
-            url: '/repo/:name',
+            url: '/:user/:name',
             views: {
                 "content": {
                     component: "reposPage"
+                }, 
+                "breadcrumb" : {
+                    component: 'breadcrumb'
                 }
             },
             resolve: {
                 repoName: ($stateParams)=> {
                     return $stateParams.name;
+                },
+                userName: ($stateParams)=> {
+                    return $stateParams.user;
                 }
             }
         })
         .state('folder', {
-            url: '/repo/:name/tree/master/*path',
+            url: '/:user/:name/tree/master/*path',
             onEnter: function() {
             },
             views: {
@@ -71,6 +79,9 @@ app.config(function($locationProvider, $compileProvider, $httpProvider, $statePr
                 },
                 'content': {
                     component: 'repoFiles'
+                },
+                "breadcrumb" : {
+                    component: 'breadcrumb'
                 }
             },
             resolve: {
@@ -79,11 +90,14 @@ app.config(function($locationProvider, $compileProvider, $httpProvider, $statePr
                 },
                 folderName: ($stateParams)=> {
                     return $stateParams.path;
+                },
+                userName: ($stateParams)=> {
+                    return $stateParams.user;
                 }
             }
         })
         .state('file', {
-            url: '/repo/:name/blob/master/*path',
+            url: '/:user/:name/blob/master/*path',
             onEnter: function() {
             },
             views: {
@@ -92,6 +106,9 @@ app.config(function($locationProvider, $compileProvider, $httpProvider, $statePr
                 },
                 'content': {
                     component: 'filePage'
+                },
+                "breadcrumb" : {
+                    component: 'breadcrumb'
                 }
             },
             resolve: {
@@ -108,11 +125,11 @@ app.config(function($locationProvider, $compileProvider, $httpProvider, $statePr
             template: 'nononono'
         })
 
-    hljsServiceProvider.setOptions({
-        // replace tab with 2 spaces
-        tabReplace: '  '
-    });
 
+        hljsServiceProvider.setOptions({
+            // replace tab with 2 spaces
+            tabReplace: '  '
+        });
 });
 
 

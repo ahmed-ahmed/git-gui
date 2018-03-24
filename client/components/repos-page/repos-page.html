@@ -1,1 +1,17 @@
+<app-select items="$ctrl.branches"></app-select>
+
 <repo-files repo-name="$ctrl.repoName"></repo-files>
+
+
+<div class="panel panel-primary panel-line panel-bordered">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <i class="icon wb-book" aria-hidden="true"></i>
+            README.md
+        </h3>
+    </div>
+    <div class="panel-body">
+        <p markdown-to-html="$ctrl.readme"></p>
+    </div>
+</div>
+

@@ -13,6 +13,7 @@ import './components/repo-files/repo-files.js';
 import './components/file-page/file-page.js';
 import './components/code/code.js';
 import './components/addRepo/add-repo.js'
+import './components/side-navigation/side-navigation'
 
 
 

@@ -74,7 +74,7 @@ exports.getFiles = (repo, branch, path) => {
     var repoPath = repos[repo].path;
     var workingDir = repoPath + '/' + path;
     var cmd = blamePath;
-    return execa.shell(cmd, { cwd: workingDir }, ).then(results => {
+    return execa.shell(cmd, { cwd: workingDir }).then(results => {
         let data = results.stdout
         let files = [];
         let folders = [];
